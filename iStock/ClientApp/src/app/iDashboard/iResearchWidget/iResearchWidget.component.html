@@ -1,0 +1,140 @@
+<h1>Sales Order</h1>
+
+<div class="container" *ngIf="keyword">
+    <form role="form">
+        <div class="panel panel-primary">
+        <div class="panel-heading">Order Info</div>
+        <div class="panel-body">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fName" class="col-form-label col-form-label-lg">Order Numer</label>
+                <input type="text" class="form-control form-control-lg" name="fName" placeholder="Order Numer"
+                    [(ngModel)]="orderDetail.OrderNumber">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lName" class="col-form-label col-form-label-lg">Name</label>
+                <input type="text" class="form-control form-control-lg " name="lName" placeholder="Name"
+                    [(ngModel)]="orderDetail.Name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email" class="col-form-label col-form-label-lg">Customer</label>
+                <ng-autocomplete 
+  [data]="keyword"
+  [searchKeyword]="data"
+  (selected)='selectEvent($event)'
+  (inputChanged)='onChangeSearch($event)'
+  (inputFocused)='onFocused($event)'
+  [itemTemplate]="itemTemplate"
+  [notFoundTemplate]="notFoundTemplate">                                 
+</ng-autocomplete>
+
+<ng-template #itemTemplate let-item>
+    <a [innerHTML]="item.Name"></a>
+    </ng-template>
+     
+    <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+    </ng-template>
+    
+
+            </div>
+            <div class="form-group col-md-6">
+                <label for="foreignName" class="col-form-label col-form-label-lg">Currency</label>
+                <input type="text" class="form-control form-control-lg" name="foreignName" placeholder="Currency"
+                    [(ngModel)]="orderDetail.Currency">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="DOB" class="col-form-label col-form-label-lg">Order Date</label>
+                <input type="text" class="form-control form-control-lg" name="DOB" placeholder="Order Date"
+                    [(ngModel)]="orderDetail.OrderDate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress" class="col-form-label col-form-label-lg">Shipping Address 1</label>
+            <input type="text" class="form-control form-control-lg" name="inputAddress" placeholder="1234 Main St"
+                [(ngModel)]="orderDetail.Address1">
+        </div>
+    </div>
+</div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Shipping Info</div>
+            <div class="panel-body">
+            <div class="form-group">
+                <label for="inputAddress2" class="col-form-label col-form-label-lg">Shipping Address 2</label>
+                <input type="text" class="form-control form-control-lg" name="inputAddress2"
+                    placeholder="Apartment, studio, or floor" [(ngModel)]="orderDetail.Address2">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity" class="col-form-label col-form-label-lg">Shipping City</label>
+                    <input type="text" class="form-control form-control-lg" name="inputCity"
+                        [(ngModel)]="orderDetail.City">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState" class="col-form-label col-form-label-lg">Shipping State</label>
+                    <select name="inputState" class="form-control form-control-lg" [(ngModel)]="orderDetail.State">
+                        <option value="0">--All--</option>
+                        <option *ngFor="let state of states" value={{state.Code}}>
+                            {{state.Name}}
+                        </option>
+                    </select>
+
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip" class="col-form-label col-form-label-lg">Shipping Zip</label>
+
+                    <input type="text" class="form-control form-control-lg" name="inputZip"
+                        [(ngModel)]="orderDetail.Zip">
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Products</div>
+    <div class="panel-body">
+
+        <div class="form-group col-md-12">
+
+            <div class="col-lg-12">
+                <button class="btn btn-success" (click)="addProduct()">Add Item</button>
+            </div>
+
+            <div class="form-row" *ngFor="let orderProduct of orderProducts">
+                <div class="form-group col-md-3">
+                    <label for="code" class="col-form-label col-form-label-md">Item Code</label>
+                    <input type="text" class="form-control form-control-md" name="code"
+                        [(ngModel)]="orderProduct.ItemCode">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="iName" class="col-form-label col-form-label-md">Item Name</label>
+                    <input type="text" class="form-control form-control-md" name="iName"
+                        [(ngModel)]="orderProduct.ItemName">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="price" class="col-form-label col-form-label-md">Unit Price</label>
+                    <input type="text" class="form-control form-control-md" name="price"
+                        [(ngModel)]="orderProduct.UnitPrice">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="qty" class="col-form-label col-form-label-md">Quantity</label>
+                    <input type="text" class="form-control form-control-md" name="qty"
+                        [(ngModel)]="orderProduct.Quantity">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-lg-6 btnContainer">
+        <button type="submit" class="btn btn-success" (click)="onSubmit(orderDetail)">Create Order</button>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-success" (click)="cancel()">Cancel</button>
+    </div>
+</div>
+</form>
+</div>

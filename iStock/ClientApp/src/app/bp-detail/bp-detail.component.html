@@ -1,0 +1,124 @@
+<h1>Business Partners</h1>
+<p *ngIf="!bpDetail"><em>Loading...</em></p>
+
+<div class="container" *ngIf="bpDetail">
+  <form role="form">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fName" class="col-form-label col-form-label-lg">First Name</label>
+        <input type="text" class="form-control form-control-lg" name="fName" placeholder="First Name"
+          [(ngModel)]="bpDetail.FirstName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="lName" class="col-form-label col-form-label-lg">Last Name</label>
+        <input type="text" class="form-control form-control-lg " name="lName" placeholder="Last Name"
+          [(ngModel)]="bpDetail.LastName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email" class="col-form-label col-form-label-lg">Email</label>
+        <input type="email" class="form-control form-control-lg" name="email" placeholder="Email"
+          [(ngModel)]="bpDetail.Email">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="foreignName" class="col-form-label col-form-label-lg">Foreign Name</label>
+        <input type="text" class="form-control form-control-lg" name="foreignName" placeholder="Foreign Name"
+          [(ngModel)]="bpDetail.ForeignName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="DOB" class="col-form-label col-form-label-lg">Date of Birth</label>
+        <input type="text" class="form-control form-control-lg" name="DOB" placeholder="Date of Birth"
+          [(ngModel)]="bpDetail.DateOfBirth">
+      </div>
+      <div class="form-group col-md-6">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="GenderM" name="Gender" value="M"
+            [(ngModel)]="bpDetail.Gneder">
+          <label class="form-check-label col-form-label col-form-label-lg" for="GenderM">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="GenderF" name="Gender" value="F"
+            [(ngModel)]="bpDetail.Gneder">
+          <label class="form-check-label col-form-label col-form-label-lg" for="GenderF">Female</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="web" class="col-form-label col-form-label-lg">Website</label>
+        <input type="text" class="form-control form-control-lg" name="web" placeholder="Website"
+          [(ngModel)]="bpDetail.Website">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="hPhone" class="col-form-label col-form-label-lg">Home Phone</label>
+        <input type="text" class="form-control form-control-lg" name="hPhone" placeholder="Home Phone"
+          [(ngModel)]="bpDetail.HomePhone">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="oPhone" class="col-form-label col-form-label-lg">Offile Phone</label>
+        <input type="text" class="form-control form-control-lg" name="oPhone" placeholder="Office Phone"
+          [(ngModel)]="bpDetail.OfficePhone">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="mobile" class="col-form-label col-form-label-lg">Mobile</label>
+        <input type="text" class="form-control form-control-lg" name="mobile" placeholder="Mobile"
+          [(ngModel)]="bpDetail.Mobile">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fax" class="col-form-label col-form-label-lg">Fax</label>
+        <input type="text" class="form-control form-control-lg" name="fax" placeholder="Fax" [(ngModel)]="bpDetail.Fax">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress" class="col-form-label col-form-label-lg">Address 1</label>
+      <input type="text" class="form-control form-control-lg" name="inputAddress" placeholder="1234 Main St"
+        [(ngModel)]="bpDetail.Address1">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2" class="col-form-label col-form-label-lg">Address 2</label>
+      <input type="text" class="form-control form-control-lg" name="inputAddress2"
+        placeholder="Apartment, studio, or floor" [(ngModel)]="bpDetail.Address2">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity" class="col-form-label col-form-label-lg">City</label>
+        <input type="text" class="form-control form-control-lg" name="inputCity" [(ngModel)]="bpDetail.City">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState" class="col-form-label col-form-label-lg">State</label>
+        <select name="inputState" class="form-control form-control-lg" [(ngModel)]="bpDetail.State">
+          <option value="0">--All--</option>
+          <option *ngFor="let state of states" value={{state.Code}}>
+            {{state.Name}}
+          </option>
+        </select>
+
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip" class="col-form-label col-form-label-lg">Zip</label>
+        <input type="text" class="form-control form-control-lg" name="inputZip" [(ngModel)]="bpDetail.Zip">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="inlineRadio1" name="active" [value]="true"
+            [(ngModel)]="bpDetail.IsActive">
+          <label class="form-check-label col-form-label col-form-label-lg" for="inlineRadio1">Active</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="inlineRadio2" name="active" [value]="false"
+            [(ngModel)]="bpDetail.IsActive">
+          <label class="form-check-label col-form-label col-form-label-lg" for="inlineRadio2">Inactive</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-6 btnContainer">
+        <button type="submit" class="btn btn-success" (click)="onSubmit(bpDetail)">Update</button>
+      </div>
+      <div class="col-lg-6">
+        <button class="btn btn-success" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,55 @@
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-6"><h2>Manage <b>Business Partners</b></h2></div>
+    <div class="col-sm-6">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-info active">
+          <input type="radio" name="status" value="all" checked="checked"> All
+        </label>
+        <label class="btn btn-success">
+          <input type="radio" name="status" value="active"> Active
+        </label>
+        <label class="btn btn-warning">
+          <input type="radio" name="status" value="inactive"> Inactive
+        </label>
+        <!--<label class="btn btn-danger">
+          <input type="radio" name="status" value="expired"> Expired
+        </label>-->
+      </div>
+    </div>
+  </div>
+</div>
+<p *ngIf="!portfolioList"><em>Loading...</em></p>
+
+<table class="table table-striped table-hover" *ngIf="portfolioList">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stock of portfolioList" [attr.data-status]="getStatus(bp.IsActive)">
+      <td>{{ stock.StockName }}</td>
+      <td>{{ stock.Quantity }}</td>
+      <td>{{ stock.LastName }}</td>
+      <td>{{ stock.Gneder }}</td>
+      <td>{{ stock.Email }}</td>
+      <td>{{ stock.Mobile }}</td>
+      <td><span class="label"  [attr.class]="getClass(stock.IsActive)">
+        {{getText(stock.IsActive)}}
+      </span></td>
+      <td><a class="btn btn-sm manage" (click)="RowSelected(stock.Personid);">Manage</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!--<tr data-status="expired">
+<tr data-status="inactive">
+<tr data-status="inactive">-->

@@ -1,0 +1,10 @@
+.btnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-flow: row-reverse;
+}
+.btn {
+    width: 81px;
+    height: 30px;
+}
